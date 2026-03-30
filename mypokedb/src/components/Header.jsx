@@ -1,11 +1,11 @@
 import Logo from "./Logo";
 import Navbar from "./Navbar";
 
-const Header = () => {
+const Header = ({ handleRouting }) => {
 	return (
 		<header className="header">
 			<Logo />
-			<Navbar />
+			<Navbar handleRouting={ handleRouting } />
 		</header>
 	);
 };

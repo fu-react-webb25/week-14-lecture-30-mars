@@ -1,5 +1,8 @@
-const NavItem = ({ text }) => {
-	return <p className="navbar__navitem">{text}</p>;
+const NavItem = ({ text, handleRouting }) => {
+	return <p 
+		className="navbar__navitem"
+		onClick={() => handleRouting(text)}
+	>{text}</p>;
 };
 
 export default NavItem;

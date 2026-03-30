@@ -1,18 +1,29 @@
 import SearchForm from "../components/SearchForm";
 import PokemonCard from "../components/PokemonCard";
 import { pokemons } from "../data/pokemons";
+import { useState } from "react";
 
 const SearchPage = () => {
+	const [results, setResults] = useState([]);
+
+	const handleSearch = (query) => {
+		const filtered = pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(query.toLowerCase()));
+		setResults(filtered);
+	}
+
 	return (
 		<main className="page">
 			<h2 className="page__title">Search Pokemon</h2>
-			<SearchForm />
+			<SearchForm handleSearch={ handleSearch } />
 			<section className="page__pokedex">
-				<PokemonCard pokemon={pokemons[5]} />
-				<PokemonCard pokemon={pokemons[2]} />
-				<PokemonCard pokemon={pokemons[7]} />
-				<PokemonCard pokemon={pokemons[4]} />
-				<PokemonCard pokemon={pokemons[87]} />
+				{
+					results.map(pokemon => {
+						return <PokemonCard 
+							key={pokemon.id}
+							pokemon={ pokemon }
+						/>
+					})
+				}
 			</section>
 		</main>
 	);

@@ -1,18 +1,39 @@
 import GenerateForm from "../components/GenerateForm";
 import { pokemons } from "../data/pokemons";
 import PokemonCard from "../components/PokemonCard";
+import { useState } from "react";
+import { shuffleArray } from "../utils/shuffleArray";
 
 const GeneratePage = () => {
+	const [results, setResults] = useState([]);
+
+	const handleGenerate = (query, amount) => {
+		console.log(query, amount);
+		const filtered = pokemons.filter(pokemon => 
+			pokemon.type.some(type => 
+				type.name.toLowerCase() === query.toLowerCase()
+			)
+		);
+		if(filtered.length <= amount) {
+			setResults(filtered);
+		} else {
+			setResults(shuffleArray(filtered).slice(0, amount));
+		}
+	}
+
 	return (
 		<main className="page">
 			<h2 className="page__title">Generate Your Team</h2>
-			<GenerateForm />
+			<GenerateForm handleGenerate={ handleGenerate } />
 			<section className="page__pokedex">
-				<PokemonCard pokemon={pokemons[5]} />
-				<PokemonCard pokemon={pokemons[2]} />
-				<PokemonCard pokemon={pokemons[7]} />
-				<PokemonCard pokemon={pokemons[4]} />
-				<PokemonCard pokemon={pokemons[87]} />
+				{
+					results.map(pokemon => {
+						return <PokemonCard 
+							key={pokemon.id}
+							pokemon={ pokemon }
+						/>
+					})
+				}
 			</section>
 		</main>
 	);
