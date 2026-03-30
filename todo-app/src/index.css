@@ -35,3 +35,18 @@
 .listitem--undone {
   background-color: red;
 }
+
+.form-wrapper {
+  display: grid;
+  gap: 1rem;  
+}
+
+.todo-form {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.todo-input, .todo-btn {
+  padding: 1rem;
+}

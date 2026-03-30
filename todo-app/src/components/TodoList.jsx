@@ -1,25 +1,6 @@
 import TodoItem from "./TodoItem";
 
-const TodoList = () => {
-    const todos = [
-        {
-            task : 'Mata katten',
-            done : true
-        },
-        {
-            task : 'Rasta grisen',
-            done : false
-        },
-        {
-            task : 'Köpa glass',
-            done : true
-        },
-        {
-            task : 'Äta glass',
-            done : false
-        },
-    ];
-
+const TodoList = ({ todos, handleTodoClick }) => {
     return (
         <ul className="todolist">
             {
@@ -27,6 +8,7 @@ const TodoList = () => {
                     return <TodoItem 
                         todo={ todo }
                         key={ index } 
+                        handleTodoClick={ handleTodoClick } 
                     />
                 })
             }

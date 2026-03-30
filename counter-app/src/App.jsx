@@ -5,13 +5,11 @@ function App() {
   const [value, setValue] = useState(0);
 
   const decrease = () => {
-    setValue(value - 1);
-    setValue(value - 1);
+    setValue(prev => prev - 1);
   }
   
   const increase = () => {
-    setValue(value + 1);
-    setValue(value + 1);
+    setValue(prev => prev + 1);
   }
 
   return (
